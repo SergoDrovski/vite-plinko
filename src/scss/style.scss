@@ -63,7 +63,8 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height: fit-content;
+    min-height: 100vh;
   }
 
   .highlight {
@@ -86,18 +87,35 @@ img {
       align-items: center;
       gap: 8px;
 
+      position: relative;
       background-color: $color-primary;
-      border: none;
       color: $color-white;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-size: 21px;
       font-family: 'Montserrat', sans-serif;
+      font-size: 21px;
       font-weight: 700;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      outline: none;
+      -webkit-tap-highlight-color: transparent; /* Remove highlight on mobile */
+      user-select: none; /* Disable text selection */
 
       &:hover {
-        opacity: 0.9;
+        background-color: hsl(324deg 94.73% 35.05%);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        background-color: hsl(324deg 94.73% 35.05%);
+        transform: translateY(2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &:focus {
+        outline: none;
       }
 
       svg {
@@ -108,7 +126,7 @@ img {
   }
 
   #{$self}__content {
-    margin-bottom: auto;
+    flex-grow: 2;
   }
 
   #{$self}__title {
@@ -184,21 +202,36 @@ img {
     }
 
     .bonus__button {
+      margin-top: 20px;
       position: relative;
       background-color: $color-primary;
-      border: none;
       color: $color-white;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-size: 21px;
       font-family: 'Montserrat', sans-serif;
+      font-size: 21px;
       font-weight: 700;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
-
-      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      outline: none;
+      -webkit-tap-highlight-color: transparent; /* Remove highlight on mobile */
+      user-select: none; /* Disable text selection */
 
       &:hover {
-        opacity: 0.9;
+        background-color: hsl(324deg 94.73% 35.05%);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        background-color: hsl(324deg 94.73% 35.05%);
+        transform: translateY(2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &:focus {
+        outline: none;
       }
 
       &::before,
@@ -215,17 +248,19 @@ img {
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 60%;
+        transition: transform 0.8s ease-in-out;
       }
 
       &::before {
         background-image: url(/src/img/arrow-left.svg);
         left: -90px;
+        animation: arrow-left 1.6s infinite ease-in-out;
       }
-
 
       &::after {
         background-image: url(/src/img/arrow-right.svg);
         right: -90px;
+        animation: arrow-right 1.6s infinite ease-in-out;
       }
     }
   }
@@ -236,7 +271,7 @@ img {
     &-payments {
       display: flex;
       justify-content: space-evenly;
-      height: 46px;
+      height: 40px;
     }
   }
 
@@ -266,7 +301,14 @@ img {
 
     #{$self}__title {
       font-size: 30px;
-      margin-top: 32px;
+
+      @media (max-height: 950px) {
+        margin-top: 40px;
+      }
+
+      @media (max-height: 720px) {
+        margin-top: 32px;
+      }
     }
 
     #{$self}__description {
@@ -275,7 +317,6 @@ img {
     }
 
     .bonus {
-      margin-top: 8px;
 
       .bonus__image {
         width: 213px;
@@ -294,14 +335,27 @@ img {
         font-size: 12px;
       }
 
-      .bonus__timer,
-      .bonus__button {
-        margin-top: 11px;
-      }
-
       .bonus__button {
         font-size: 14px;
         margin-top: 11px;
+      }
+
+      @media (max-height: 950px) {
+        margin-top: 40px;
+
+        .bonus__timer,
+        .bonus__button {
+          margin-top: 16px;
+        }
+      }
+
+      @media (max-height: 720px) {
+        margin-top: 8px;
+
+        .bonus__timer,
+        .bonus__button {
+          margin-top: 11px;
+        }
       }
     }
 
@@ -328,5 +382,23 @@ img {
         max-width: 226px;
       }
     }
+  }
+}
+
+@keyframes arrow-left {
+  0%, 100% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(10px, -8px);
+  }
+}
+
+@keyframes arrow-right {
+  0%, 100% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(-10px, -8px);
   }
 }
