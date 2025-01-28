@@ -5,7 +5,7 @@ import {
   type BetAmountOfExistingBalls,
   type RowCount,
   type WinRecord,
-} from '$lib/types';
+} from '$lib/types/game';
 import { interpolateRgbColors } from '$lib/utils/colors';
 import { countValueOccurrences } from '$lib/utils/numbers';
 import { derived, writable } from 'svelte/store';

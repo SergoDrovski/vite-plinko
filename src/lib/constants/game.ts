@@ -1,4 +1,4 @@
-import { RiskLevel } from '$lib/types';
+import { RiskLevel } from '$lib/types/game';
 import { getBinColors } from '$lib/utils/colors';
 import { computeBinProbabilities } from '$lib/utils/numbers';
 

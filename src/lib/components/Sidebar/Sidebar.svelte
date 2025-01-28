@@ -5,7 +5,7 @@
     betAmount,
     plinkoEngine,
   } from '$lib/stores/game';
-  import { BetMode, RiskLevel } from '$lib/types';
+  import { BetMode, RiskLevel } from '$lib/types/game';
   import type { FormEventHandler } from 'svelte/elements';
   import { twMerge } from 'tailwind-merge';
 
@@ -93,6 +93,19 @@
   <div class="relative">
     <label for="betAmount" class="text-sm font-medium text-slate-300">Bet Amount</label>
     <div class="flex">
+      <button
+          disabled={autoBetInterval !== null}
+          onclick={(event) => {
+            const num = event.target.dataset.drop ? parseFloat(event.target.dataset.drop) : 10;
+            const rate = $betAmount - num;
+            //console.log(event);
+          $betAmount = rate >= 1 ? rate : 1;
+        }}
+          class="touch-manipulation bg-slate-600 px-4 font-bold diagonal-fractions text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
+          data-drop="50"
+      >
+        -
+      </button>
       <div class="relative flex-1">
         <input
           id="betAmount"
@@ -100,9 +113,6 @@
           onfocusout={handleBetAmountFocusOut}
           disabled={autoBetInterval !== null}
           type="number"
-          min="0"
-          step="0.01"
-          inputmode="decimal"
           class={twMerge(
             'w-full rounded-l-md border-2 border-slate-600 bg-slate-900 py-2 pl-7 pr-2 text-sm text-white transition-colors hover:cursor-pointer focus:border-slate-500 focus:outline-none disabled:cursor-not-allowed  disabled:opacity-50 hover:[&:not(:disabled)]:border-slate-500',
             (isBetAmountNegative || isBetExceedBalance) &&
@@ -111,23 +121,20 @@
         />
         <div class="absolute left-3 top-2 select-none text-slate-500" aria-hidden="true">$</div>
       </div>
+
       <button
         disabled={autoBetInterval !== null}
-        onclick={() => {
-          $betAmount = parseFloat(($betAmount / 2).toFixed(2));
-        }}
-        class="touch-manipulation bg-slate-600 px-4 font-bold diagonal-fractions text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
-      >
-        1/2
-      </button>
-      <button
-        disabled={autoBetInterval !== null}
-        onclick={() => {
+        onclick={(event) => {
           $betAmount = parseFloat(($betAmount * 2).toFixed(2));
+          const num = event.target.dataset.drop ? parseFloat(event.target.dataset.drop) : 10;
+          const rate = $betAmount - num;
+          //console.log(event);
+          $betAmount = rate >= 1 ? rate : 1;
         }}
         class="relative touch-manipulation rounded-r-md bg-slate-600 px-4 text-sm font-bold text-white transition-colors after:absolute after:left-0 after:inline-block after:h-1/2 after:w-[2px] after:bg-slate-800 after:content-[''] disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
+        data-raise="50"
       >
-        2×
+        +
       </button>
     </div>
     {#if isBetAmountNegative}
