@@ -123,6 +123,10 @@ img {
   vertical-align: bottom;
 }
 
+section {
+  height: 600px;
+}
+
 .container {
   width: 100%;
   max-width: 768px;
@@ -250,14 +254,13 @@ img {
   background-position-x: 50%;
   color: $color-white;
   text-align: center;
-  height: 600px;
+
   background-color: #0c5997;
 
   .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 600px;
 
     background-image: url(/src/img/background-prew.webp);
     background-repeat: no-repeat;
@@ -378,6 +381,103 @@ img {
 
   .container {
     height: 600px;
+  }
+}
+
+.deposit {
+  background: linear-gradient(to right, #12164f 62%, #8d1f70bf 16%);
+  overflow-x: hidden;
+  .container {
+    position: relative;
+    padding: 0 30px;
+    height: 600px;
+    background-image: url(/src/img/deposit-bg-1.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__content {
+    position: relative;
+    max-width: 222px;
+    z-index: 2;
+  }
+  &__title {
+    padding-top: 30px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #fff;
+  }
+  &__description {
+    max-width: 202px;
+    line-height: 21px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 23px;
+  }
+
+  &__images {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 142px;
+  }
+
+  &__visa {
+    width: 76px;
+    height: 25px;
+  }
+  &__mastercard {
+    width: 44px;
+    height: 35px;
+  }
+  &__amount {
+    position: absolute;
+    right: -126px;
+    top: 45px;
+    width: 176px;
+    background-color: #e30088;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transform: rotate(-15deg);
+    z-index: -1;
+    text-align: center;
+  }
+  &__amount-title {
+    line-height: 14px;
+    font-size: 14px;
+    font-weight: 800;
+
+    margin-bottom: 7px;
+    span {
+      line-height: 24px;
+      font-size: 20px;
+    }
+  }
+  &__amount-subtitle {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  &__woman {
+    background-image: url(/src/img/deposit-bg-2.webp);
+    background-repeat: no-repeat;
+
+    position: absolute;
+    width: 248px;
+    height: 457px;
+    right: -34px;
+    bottom: 0px;
+    z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    & .container {
+      background-position: 100% 60%;
+    }
   }
 }
 
