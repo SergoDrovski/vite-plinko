@@ -44,6 +44,14 @@
     }
   };
 
+  let balanceFormatted = $derived(
+          $balance.toLocaleString('ru-RU'),
+  );
+
+  let betAmountFormatted = $derived(
+          $betAmount.toLocaleString('ru-RU'),
+  );
+
   function resetAutoBetInterval() {
     if (autoBetInterval !== null) {
       clearInterval(autoBetInterval);
@@ -75,7 +83,7 @@
   }
 
   function handleBetClick() {
-    debugger
+    //debugger
     if (betMode === BetMode.MANUAL) {
       $plinkoEngine?.dropBall();
     } else if (autoBetInterval === null) {
@@ -88,71 +96,134 @@
 
 </script>
 
-<div class="flex flex-col gap-5 bg-slate-700 p-3 lg:max-w-80">
+<div class="control-game">
+  <button
+      onclick={handleBetClick}
+      disabled={isDropBallDisabled}
+      class='control-game__play'
+  > Giocare </button>
 
-  <div class="relative">
-    <label for="betAmount" class="text-sm font-medium text-slate-300">Bet Amount</label>
-    <div class="flex">
+  <div class="control-game__amount">
+    <div class="control-game__bet-amount">
       <button
-          disabled={autoBetInterval !== null}
-          onclick={(event) => {
+            disabled={autoBetInterval !== null}
+            onclick={(event) => {
+              debugger
             const num = event.target.dataset.drop ? parseFloat(event.target.dataset.drop) : 10;
             const rate = $betAmount - num;
             //console.log(event);
           $betAmount = rate >= 1 ? rate : 1;
         }}
-          class="touch-manipulation bg-slate-600 px-4 font-bold diagonal-fractions text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
-          data-drop="50"
+              class="touch-manipulation bg-slate-600 px-4 font-bold diagonal-fractions text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
+              data-drop="45"
       >
         -
       </button>
-      <div class="relative flex-1">
-        <input
-          id="betAmount"
-          value={$betAmount}
-          onfocusout={handleBetAmountFocusOut}
-          disabled={autoBetInterval !== null}
-          type="number"
-          class={twMerge(
-            'w-full rounded-l-md border-2 border-slate-600 bg-slate-900 py-2 pl-7 pr-2 text-sm text-white transition-colors hover:cursor-pointer focus:border-slate-500 focus:outline-none disabled:cursor-not-allowed  disabled:opacity-50 hover:[&:not(:disabled)]:border-slate-500',
-            (isBetAmountNegative || isBetExceedBalance) &&
-              'border-red-500 focus:border-red-400 hover:[&:not(:disabled)]:border-red-400',
-          )}
-        />
-        <div class="absolute left-3 top-2 select-none text-slate-500" aria-hidden="true">$</div>
+      <div class="control-game__balance">
+        <span class="control-game__title">Scommessa</span>
+        <span class="control-game__amount"> {$betAmount}
+          <span class="control-game__currency">€</span>
+        </span>
       </div>
-
       <button
-        disabled={autoBetInterval !== null}
-        onclick={(event) => {
-          $betAmount = parseFloat(($betAmount * 2).toFixed(2));
-          const num = event.target.dataset.drop ? parseFloat(event.target.dataset.drop) : 10;
-          const rate = $betAmount - num;
-          //console.log(event);
-          $betAmount = rate >= 1 ? rate : 1;
+          disabled={autoBetInterval !== null}
+          onclick={(event) => {
+            debugger
+            const num = event.target.dataset.raise ? parseFloat(event.target.dataset.raise) : 10;
+            const rate = $betAmount + num;
+            $betAmount = rate >= 1 ? rate : 1;
         }}
-        class="relative touch-manipulation rounded-r-md bg-slate-600 px-4 text-sm font-bold text-white transition-colors after:absolute after:left-0 after:inline-block after:h-1/2 after:w-[2px] after:bg-slate-800 after:content-[''] disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
-        data-raise="50"
+              class="relative touch-manipulation rounded-r-md bg-slate-600 px-4 text-sm font-bold text-white transition-colors after:absolute after:left-0 after:inline-block after:h-1/2 after:w-[2px] after:bg-slate-800 after:content-[''] disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
+              data-raise="45"
       >
         +
       </button>
     </div>
-    {#if isBetAmountNegative}
-      <p class="absolute text-xs leading-5 text-red-400">
-        This must be greater than or equal to 0.
-      </p>
-    {:else if isBetExceedBalance}
-      <p class="absolute text-xs leading-5 text-red-400">Can't bet more than your balance!</p>
-    {/if}
+
+    <div class="control-game__balance">
+      <span class="control-game__title">Equilibrio</span>
+      <span class="control-game__amount">
+          {balanceFormatted}
+            <span class="control-game__currency">€</span>
+      </span>
+    </div>
   </div>
-
-  <button
-    onclick={handleBetClick}
-    disabled={isDropBallDisabled}
-    class={twMerge(
-      'touch-manipulation rounded-md bg-green-500 py-3 font-semibold text-slate-900 transition-colors hover:bg-green-400 active:bg-green-600 disabled:bg-neutral-600 disabled:text-neutral-400',
-      autoBetInterval !== null && 'bg-yellow-500 hover:bg-yellow-400 active:bg-yellow-600',
-    )}
-  > Play </button>
-
 </div>
+
+<style lang="scss">
+  .control-game {
+    $self: &;
+
+    &__play {
+      position: relative;
+      width: 100%;
+      background-color: hsla(324, 100%, 44%, 1);
+      color: hsla(0, 0%, 100%, 1);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      outline: none;
+      -webkit-tap-highlight-color: transparent; /* Remove highlight on mobile */
+      user-select: none; /* Disable text selection */
+
+      &:hover {
+        background-color: hsl(324deg 94.73% 35.05%);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        background-color: hsl(324deg 94.73% 35.05%);
+        transform: translateY(2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__amount {
+      display: flex;
+      margin-top: 10px;
+      gap: 10px;
+      justify-content: space-around;
+    }
+
+    &__bet-amount {
+      display: flex;
+    }
+
+    &__balance {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 125px;
+      font-family: 'Geologica', sans-serif;
+
+      padding: 8px 10px;
+      border-radius: 14px;
+
+      background-color: hsla(0, 0%, 100%, 0.05);
+
+      &.bg-transparent {
+        background-color: transparent;
+      }
+
+      #{$self}__title {
+        font-size: 10px;
+        line-height: 1;
+      }
+      #{$self}__amount {
+        line-height: 1;
+        font-weight: 900;
+        font-size: 14px;
+      }
+    }
+  }
+</style>

@@ -5,12 +5,12 @@
   import Sidebar from '$lib/components/Sidebar/Sidebar.svelte';
   import { setBalanceFromLocalStorage, writeBalanceToLocalStorage } from '$lib/utils/game';
 
-  $effect(() => {
-    setBalanceFromLocalStorage();
-  });
+  // $effect(() => {
+  //   setBalanceFromLocalStorage();
+  // });
 </script>
 
-<svelte:window onbeforeunload={writeBalanceToLocalStorage} />
+<!--<svelte:window onbeforeunload={writeBalanceToLocalStorage} />-->
 
 <div class="relative flex  w-full flex-col">
 
@@ -26,15 +26,12 @@
   </div>
 
   <div class="mt-10">
-    <Balance />
-  </div>
-
-  <div class="mt-10">
     <Sidebar />
   </div>
+
 </div>
 
-<style>
+<style lang="scss">
   :global(body) {
     @apply bg-gray-800;
   }

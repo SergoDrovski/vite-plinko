@@ -6,7 +6,8 @@
       "$lib/*": [
         "src/lib/*"
       ]
-    }
+    },
+    "verbatimModuleSyntax": true
   },
   "include": [
     "./ambient.d.ts",

@@ -12,13 +12,13 @@ import { derived, writable } from 'svelte/store';
 
 export const plinkoEngine = writable<PlinkoEngine | null>(null);
 
-export const betAmount = writable<number>(1);
+export const betAmount = writable<number>(45);
 
 export const betAmountOfExistingBalls = writable<BetAmountOfExistingBalls>({});
 
-export const rowCount = writable<RowCount>(16);
+export const rowCount = writable<RowCount>(8);
 
-export const riskLevel = writable<RiskLevel>(RiskLevel.MEDIUM);
+export const riskLevel = writable<RiskLevel>(RiskLevel.LOW);
 
 export const winRecords = writable<WinRecord[]>([]);
 

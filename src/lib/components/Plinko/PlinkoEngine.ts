@@ -8,7 +8,7 @@ import {
   betAmountOfExistingBalls,
   totalProfitHistory,
 } from '$lib/stores/game';
-import type { RiskLevel, RowCount } from '$lib/types';
+import type { RiskLevel, RowCount } from '$lib/types/game';
 import { getRandomBetween } from '$lib/utils/numbers';
 import Matter, { type IBodyDefinition } from 'matter-js';
 import { get } from 'svelte/store';

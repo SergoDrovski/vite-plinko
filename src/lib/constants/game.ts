@@ -2,7 +2,7 @@ import { RiskLevel } from '$lib/types/game';
 import { getBinColors } from '$lib/utils/colors';
 import { computeBinProbabilities } from '$lib/utils/numbers';
 
-export const DEFAULT_BALANCE = 200;
+export const DEFAULT_BALANCE = 2000;
 
 export const LOCAL_STORAGE_KEY = {
   BALANCE: 'plinko_balance',
@@ -12,22 +12,22 @@ export const LOCAL_STORAGE_KEY = {
 } as const;
 
 /**
- * Range of row counts the game supports.
+ * Диапазон количества строк, поддерживаемых игрой.
  */
 export const rowCountOptions = [8, 9, 10, 11, 12, 13, 14, 15, 16] as const;
 
 /**
- * Number of rows of pins the game supports.
+ * Количество рядов кеглей, поддерживаемых игрой.
  */
 export type RowCount = (typeof rowCountOptions)[number];
 
 /**
- * Interval (in milliseconds) for placing auto bets.
+ * Интервал (в миллисекундах) для автоматического размещения ставок.
  */
 export const autoBetIntervalMs = 250;
 
 /**
- * For each row count, the background and shadow colors of each bin.
+ * Для каждой строки указывается количество цветов фона и теней в каждой ячейке.
  */
 export const binColorsByRowCount = rowCountOptions.reduce(
   (acc, rowCount) => {
@@ -38,7 +38,7 @@ export const binColorsByRowCount = rowCountOptions.reduce(
 );
 
 /**
- * For each row count, what's the probabilities of a ball falling into each bin.
+ * Для каждого количества строк определите, какова вероятность того, что мяч упадет в каждую ячейку.
  */
 export const binProbabilitiesByRowCount: Record<RowCount, number[]> = rowCountOptions.reduce(
   (acc, rowCount) => {
@@ -49,11 +49,11 @@ export const binProbabilitiesByRowCount: Record<RowCount, number[]> = rowCountOp
 );
 
 /**
- * Multipliers of each bin by row count and risk level.
+ * Множители для каждой ячейки в зависимости от количества строк и уровня риска.
  */
 export const binPayouts: Record<RowCount, Record<RiskLevel, number[]>> = {
   8: {
-    [RiskLevel.LOW]: [5.6, 2.1, 1.1, 1, 0.5, 1, 1.1, 2.1, 5.6],
+    [RiskLevel.LOW]: [10, 5, 2, 1, 0.5, 1, 2, 5, 10],
     [RiskLevel.MEDIUM]: [13, 3, 1.3, 0.7, 0.4, 0.7, 1.3, 3, 13],
     [RiskLevel.HIGH]: [29, 4, 1.5, 0.3, 0.2, 0.3, 1.5, 4, 29],
   },

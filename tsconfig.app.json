@@ -5,7 +5,7 @@
     "paths": {
       "$lib/*": ["src/lib/*"]
     },
-
+    "verbatimModuleSyntax": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
