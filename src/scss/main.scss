@@ -499,6 +499,7 @@ section {
 }
 
 .steps {
+  background-color: #1f3273;
   .container {
     padding: 0 20px;
     height: 600px;
@@ -524,14 +525,18 @@ section {
     &:not(:last-child)::before {
       position: absolute;
       content: "";
-      bottom: -19px;
-      left: 24px;
+      bottom: -36px;
+      left: 22px;
 
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       background-image: url(/src/img/arrow-down.svg);
       background-repeat: no-repeat;
       background-size: contain;
+    }
+
+    &:nth-child(2):before {
+      bottom: -22px;
     }
   }
 
