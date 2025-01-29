@@ -69,8 +69,8 @@ class PlinkoEngine {
    */
   private pinsLastRowXCoords: number[] = [];
 
-  static WIDTH = 760;
-  static HEIGHT = 570;
+  static WIDTH = 536;
+  static HEIGHT = 558;
 
   private static PADDING_X = 52;
   private static PADDING_TOP = 36;
@@ -80,16 +80,16 @@ class PlinkoEngine {
   private static BALL_CATEGORY = 0x0002;
 
   /**
-   * Friction parameters to be applied to the ball body.
+   * Параметры трения, которые должны быть применены к корпусу шара.
    *
-   * Higher friction leads to more concentrated distribution towards the center. These numbers
-   * are found by trial and error to make the actual weighted bin payout very close to the
-   * expected bin payout.
+   * Более высокое трение приводит к более концентрированному распределению в центре. Эти цифры
+   * получены методом проб и ошибок, чтобы приблизить фактическую взвешенную выплату по ячейкам к
+   * ожидаемой выплате по ячейкам.
    */
   private static ballFrictions: BallFrictionsByRowCount = {
     friction: 0.5,
     frictionAirByRowCount: {
-      8: 0.0395,
+      8: 0.028, //8: 0.0395,
       9: 0.041,
       10: 0.038,
       11: 0.0355,
@@ -106,8 +106,8 @@ class PlinkoEngine {
    *
    * @param canvas The canvas element to render the game to.
    *
-   * @remarks This constructor does NOT start the rendering and physics engine.
-   * Call the `start` method to start the engine.
+   * @remarks Этот конструктор не запускает рендеринг и физический движок.
+   * Вызовите метод `start`, чтобы запустить движок.
    */
   constructor(canvas: HTMLCanvasElement) {
     //debugger
@@ -131,7 +131,7 @@ class PlinkoEngine {
       options: {
         width: PlinkoEngine.WIDTH,
         height: PlinkoEngine.HEIGHT,
-        background: '#0f1728',
+        background: '#00000000',
         wireframes: false,
       },
     });
@@ -165,7 +165,7 @@ class PlinkoEngine {
   }
 
   /**
-   * Renders the game and starts the physics engine.
+   * Рендерит игру и запускает физический движок.
    */
   start() {
     Matter.Render.run(this.render); // Renders the scene to canvas
@@ -173,7 +173,7 @@ class PlinkoEngine {
   }
 
   /**
-   * Stops (pauses) the rendering and physics engine.
+   * Останавливает (приостанавливает) рендеринг и физический движок.
    */
   stop() {
     Matter.Render.stop(this.render);
@@ -181,11 +181,11 @@ class PlinkoEngine {
   }
 
   /**
-   * Drops a new ball from the top with a random horizontal offset, and deducts the balance.
+   * Сбрасывает новый шар сверху со случайным смещением по горизонтали и вычитает остаток.
    */
   dropBall() {
     const ballOffsetRangeX = this.pinDistanceX * 0.8;
-    const ballRadius = this.pinRadius * 2;
+    const ballRadius = this.pinRadius * 2 + 7;
     const { friction, frictionAirByRowCount } = PlinkoEngine.ballFrictions;
 
     const ball = Matter.Bodies.circle(
@@ -205,6 +205,11 @@ class PlinkoEngine {
         },
         render: {
           fillStyle: '#ff0000',
+          sprite: {
+            texture: 'src/img/ball-drop.png', // Путь к изображению
+            xScale: 0.5,
+            yScale: 0.5
+          }
         },
       },
     );
@@ -215,7 +220,7 @@ class PlinkoEngine {
   }
 
   /**
-   * Total width of all bins as percentage of the canvas width.
+   * Общая ширина всех ячеек в процентах от ширины полотна.
    */
   get binsWidthPercentage(): number {
     const lastPinX = this.pinsLastRowXCoords[this.pinsLastRowXCoords.length - 1];
@@ -223,7 +228,7 @@ class PlinkoEngine {
   }
 
   /**
-   * Gets the horizontal distance between each pin's center point.
+   * Возвращает расстояние по горизонтали между центральными точками каждого штифта.
    */
   private get pinDistanceX(): number {
     const lastRowPinCount = 3 + this.rowCount - 1;
@@ -231,13 +236,13 @@ class PlinkoEngine {
   }
 
   private get pinRadius(): number {
-    return (24 - this.rowCount) / 2;
+    return (18 - this.rowCount) / 2;
   }
 
   /**
-   * Refreshes the game with a new number of rows.
+   * Обновляет игру новым количеством рядов.
    *
-   * Does nothing if the new row count equals the current count.
+   * Ничего не делает, если количество новых строк равно текущему количеству.
    */
   private updateRowCount(rowCount: RowCount) {
     if (rowCount === this.rowCount) {
@@ -251,7 +256,7 @@ class PlinkoEngine {
   }
 
   /**
-   * Called when a ball hits the invisible sensor at the bottom.
+   * Вызывается, когда мяч попадает в невидимый датчик внизу.
    */
   private handleBallEnterBin(ball: Matter.Body) {
     const binIndex = this.pinsLastRowXCoords.findLastIndex((pinX) => pinX < ball.position.x);
@@ -291,7 +296,7 @@ class PlinkoEngine {
   }
 
   /**
-   * Renders the pins and walls. Previous ones are removed before rendering new ones.
+   * Рендерит штифты и стены. Предыдущие штифты удаляются перед рендерингом новых.
    */
   private placePinsAndWalls() {
     const { PADDING_X, PADDING_TOP, PADDING_BOTTOM, PIN_CATEGORY, BALL_CATEGORY } = PlinkoEngine;
@@ -313,7 +318,7 @@ class PlinkoEngine {
         PADDING_TOP +
         ((this.canvas.height - PADDING_TOP - PADDING_BOTTOM) / (this.rowCount - 1)) * row;
 
-      /** Horizontal distance between canvas left/right boundary and first/last pin of the row. */
+      /** Расстояние по горизонтали между левой/правой границей полотна и первым/последним штифтом ряда */
       const rowPaddingX = PADDING_X + ((this.rowCount - 1 - row) * this.pinDistanceX) / 2;
 
       for (let col = 0; col < 3 + row; ++col) {
@@ -322,6 +327,8 @@ class PlinkoEngine {
           isStatic: true,
           render: {
             fillStyle: '#ffffff',
+            lineWidth: 5,
+            strokeStyle: 'rgb(182,182,182)',
           },
           collisionFilter: {
             category: PIN_CATEGORY,

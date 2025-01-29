@@ -21,21 +21,33 @@
   };
 </script>
 
-<div class="relative bg-gray-900">
-  <div class="mx-auto flex h-full flex-col px-4 pb-4" style:max-width={`${WIDTH}px`}>
-    <div class="relative w-full" style:aspect-ratio={`${WIDTH} / ${HEIGHT}`}>
-      {#if $plinkoEngine === null}
-        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <CircleNotch class="size-20 animate-spin text-slate-600" weight="bold" />
-        </div>
-      {/if}
-
-      <canvas use:initPlinko width={WIDTH} height={HEIGHT} class="absolute inset-0 h-full w-full">
+<div class="game-plinko">
+  <div style:max-width={`${WIDTH}px`}>
+    <div class="game-plinko__wrapper" style:aspect-ratio={`${WIDTH} / ${HEIGHT}`}>
+      <canvas use:initPlinko width={WIDTH} height={HEIGHT} class="game-plinko__canvas">
       </canvas>
     </div>
     <BinsRow />
   </div>
-  <div class="absolute right-[5%] top-1/2 -translate-y-1/2">
+  <div class="game-plinko__last-wins absolute right-[5%] top-1/2 -translate-y-1/2">
     <LastWins />
   </div>
 </div>
+
+<style lang="scss">
+  .game-plinko {
+    $self: &;
+    &__wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    &__canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+    }
+    &__last-wins {}
+  }
+</style>

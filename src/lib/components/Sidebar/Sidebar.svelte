@@ -103,41 +103,14 @@
       class='control-game__play'
   > Giocare </button>
 
-  <div class="control-game__amount">
+  <div class="control-game__pricing">
     <div class="control-game__bet-amount">
-      <button
-            disabled={autoBetInterval !== null}
-            onclick={(event) => {
-              debugger
-            const num = event.target.dataset.drop ? parseFloat(event.target.dataset.drop) : 10;
-            const rate = $betAmount - num;
-            //console.log(event);
-          $betAmount = rate >= 1 ? rate : 1;
-        }}
-              class="touch-manipulation bg-slate-600 px-4 font-bold diagonal-fractions text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
-              data-drop="45"
-      >
-        -
-      </button>
       <div class="control-game__balance">
         <span class="control-game__title">Scommessa</span>
         <span class="control-game__amount"> {$betAmount}
           <span class="control-game__currency">€</span>
         </span>
       </div>
-      <button
-          disabled={autoBetInterval !== null}
-          onclick={(event) => {
-            debugger
-            const num = event.target.dataset.raise ? parseFloat(event.target.dataset.raise) : 10;
-            const rate = $betAmount + num;
-            $betAmount = rate >= 1 ? rate : 1;
-        }}
-              class="relative touch-manipulation rounded-r-md bg-slate-600 px-4 text-sm font-bold text-white transition-colors after:absolute after:left-0 after:inline-block after:h-1/2 after:w-[2px] after:bg-slate-800 after:content-[''] disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
-              data-raise="45"
-      >
-        +
-      </button>
     </div>
 
     <div class="control-game__balance">
@@ -152,6 +125,7 @@
 
 <style lang="scss">
   .control-game {
+    margin-top: 30px;
     $self: &;
 
     &__play {
@@ -188,22 +162,24 @@
       }
     }
 
-    &__amount {
+    &__pricing {
       display: flex;
       margin-top: 10px;
       gap: 10px;
       justify-content: space-around;
+
     }
 
     &__bet-amount {
       display: flex;
+      width: 100%;
     }
 
     &__balance {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 125px;
+      width: 100%;
       font-family: 'Geologica', sans-serif;
 
       padding: 8px 10px;
