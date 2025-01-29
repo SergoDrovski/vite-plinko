@@ -72,8 +72,8 @@ class PlinkoEngine {
   static WIDTH = 536;
   static HEIGHT = 558;
 
-  private static PADDING_X = 52;
-  private static PADDING_TOP = 36;
+  private static PADDING_X = 62;
+  private static PADDING_TOP = 82;
   private static PADDING_BOTTOM = 28;
 
   private static PIN_CATEGORY = 0x0001;
@@ -101,6 +101,26 @@ class PlinkoEngine {
     },
   };
 
+  public ballOffset: number[] = [274, 260, 269, 268, 267, 270, 271, 275, 274];
+
+  public mapsBallOffset: number[][] = [
+    [0, 7, 4, 4, 8],
+    [3, 3, 6, 2, 0],
+    [6, 2, 6, 3, 1],
+    [2, 7, 3, 5, 7],
+    [8, 6, 5, 6, 3],
+    [8, 4, 4, 8, 1],
+    [1, 2, 3, 5, 7],
+    [7, 6, 5, 7, 3],
+    [2, 3, 5, 6, 8],
+    [8, 4, 1, 4, 0],
+    [1, 6, 2, 5, 6],
+  ];
+
+  public currentIndexMapBallOffset: number;
+
+  public dropCount: number = 5;
+
   /**
    * Creates the engine and the game's layout.
    *
@@ -112,6 +132,7 @@ class PlinkoEngine {
   constructor(canvas: HTMLCanvasElement) {
     //debugger
     this.canvas = canvas;
+    this.currentIndexMapBallOffset = Math.floor(Math.random() * 10);
 
     this.betAmount = get(betAmount);
     this.rowCount = get(rowCount);
@@ -182,17 +203,38 @@ class PlinkoEngine {
 
   /**
    * Сбрасывает новый шар сверху со случайным смещением по горизонтали и вычитает остаток.
+   * {
+   *     0: 274,
+   *     1: 260,
+   *     2: 269,
+   *     3: 268,
+   *     4: 267,
+   *     5: 270,
+   *     6: 271,
+   *     7: 275,
+   *     8: 274,
+   * }
+   *
+   * [4, 4, 3, 5, 8]
+   * [0, 2, 3, 3, 6]
+   * [1, 2, 3, 6, 6]
+   * [2, 3, 5, 7, 7]
+   * [3, 5, 6, 6, 8]
+   * [1, 2, 3, 5, 7]
+   * [3, 5, 6, 7, 7]
+   * [2, 3, 5, 6, 8]
+   * [0, 1, 4, 4, 8]
+   * [1, 2, 5, 6, 6]
    */
   dropBall() {
-    const ballOffsetRangeX = this.pinDistanceX * 0.8;
+    if(this.dropCount <= 0) return
+    const mapBallOffset = this.mapsBallOffset[this.currentIndexMapBallOffset];
+    const ballOffsetRangeX = this.ballOffset[mapBallOffset[this.dropCount-1]];
     const ballRadius = this.pinRadius * 2 + 7;
     const { friction, frictionAirByRowCount } = PlinkoEngine.ballFrictions;
 
     const ball = Matter.Bodies.circle(
-      getRandomBetween(
-        this.canvas.width / 2 - ballOffsetRangeX,
-        this.canvas.width / 2 + ballOffsetRangeX,
-      ),
+      ballOffsetRangeX,
       0,
       ballRadius,
       {
@@ -217,6 +259,7 @@ class PlinkoEngine {
 
     betAmountOfExistingBalls.update((value) => ({ ...value, [ball.id]: this.betAmount }));
     balance.update((balance) => balance - this.betAmount);
+    this.dropCount--;
   }
 
   /**
