@@ -107,6 +107,7 @@ a:hover {
 }
 
 body {
+  position: relative;
   display: block;
   margin: 0;
   padding: 0;
@@ -538,6 +539,9 @@ section {
     &:nth-child(2):before {
       bottom: -22px;
     }
+    &:nth-child(3):before {
+      bottom: -44px;
+    }
   }
 
   &__left {
@@ -591,6 +595,107 @@ section {
     &--four {
       background-image: url(/src/img/step-4.svg);
     }
+  }
+}
+
+.download {
+  background-color: #e30088;
+  .container {
+    position: relative;
+    padding: 0 40px;
+    height: 600px;
+    background-image: url(/src/img/download-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__content {
+    max-width: 275px;
+    text-align: end;
+    margin-left: auto;
+  }
+  &__title {
+    padding-top: 40px;
+    margin-bottom: 10px;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+  &__description {
+    max-width: 185px;
+    margin-left: auto;
+    line-height: 21px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 26px;
+  }
+
+  &__button {
+    margin-top: 0;
+    background-color: #fff;
+    color: #e30088;
+    box-shadow: none;
+    font-weight: 500;
+    z-index: 10;
+  }
+
+  &__woman {
+    background-image: url(/src/img/download-woman.webp);
+    background-repeat: no-repeat;
+
+    position: absolute;
+    width: 319px;
+    height: 447px;
+    left: 0;
+    bottom: 41px;
+    z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    & .container {
+      background-position: 100% 58%;
+    }
+  }
+}
+
+.footer {
+  min-height: 131px;
+  width: 100%;
+  background: linear-gradient(158.66deg, #2464a0 0%, #051749 100%);
+  border-radius: 40px 40px 0 0;
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 131px;
+    color: #fff;
+  }
+
+  &__site {
+    margin-bottom: 18px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+  }
+  &__info {
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 300;
+    color: rgba(99, 120, 136, 1);
+  }
+
+  @media (min-width: 768px) {
+    width: 768px;
   }
 }
 
