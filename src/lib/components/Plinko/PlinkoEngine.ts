@@ -63,6 +63,8 @@ class PlinkoEngine {
    */
   private sensor: Matter.Body;
 
+  private ball: Matter.Body | null;
+
   /**
    * The x-coordinates of every pin's center in the last row. Useful for calculating
    * which bin a ball falls into.
@@ -73,7 +75,7 @@ class PlinkoEngine {
   static HEIGHT = 558;
 
   private static PADDING_X = 62;
-  private static PADDING_TOP = 82;
+  private static PADDING_TOP = 100;
   private static PADDING_BOTTOM = 28;
 
   private static PIN_CATEGORY = 0x0001;
@@ -158,7 +160,23 @@ class PlinkoEngine {
     });
     this.runner = Matter.Runner.create();
 
+    // Создаем статичную лунку
+    const hole = Matter.Bodies.circle(268, 30, 20, {
+      isStatic: true,
+      render: {
+        fillStyle: "black",
+        strokeStyle: 'rgba(182,182,182,0.45)',
+        lineWidth: 20,
+      },
+    });
+
+    Matter.Composite.add(this.engine.world, hole);
+
     this.placePinsAndWalls();
+
+   this.ball = this.renderBall(0.1, 268, { isStatic: true });
+   Matter.Composite.add(this.engine.world, this.ball);
+   this.animateDrawBall(this.ball, 0.1, 0.5, 0.008);
 
     this.sensor = Matter.Bodies.rectangle(
       this.canvas.width / 2,
@@ -228,38 +246,70 @@ class PlinkoEngine {
    */
   dropBall() {
     if(this.dropCount <= 0) return
-    const mapBallOffset = this.mapsBallOffset[this.currentIndexMapBallOffset];
-    const ballOffsetRangeX = this.ballOffset[mapBallOffset[this.dropCount-1]];
-    const ballRadius = this.pinRadius * 2 + 7;
-    const { friction, frictionAirByRowCount } = PlinkoEngine.ballFrictions;
-
-    const ball = Matter.Bodies.circle(
-      ballOffsetRangeX,
-      0,
-      ballRadius,
-      {
-        restitution: 0.8, // Bounciness
-        friction,
-        frictionAir: frictionAirByRowCount[this.rowCount],
-        collisionFilter: {
-          category: PlinkoEngine.BALL_CATEGORY,
-          mask: PlinkoEngine.PIN_CATEGORY, // Collide with pins only, but not other balls
-        },
-        render: {
-          fillStyle: '#ff0000',
-          sprite: {
-            texture: 'src/img/ball-drop.png', // Путь к изображению
-            xScale: 0.5,
-            yScale: 0.5
-          }
-        },
-      },
-    );
+    Matter.Composite.remove(this.engine.world, this.ball);
+    const ball = this.renderBall();
     Matter.Composite.add(this.engine.world, ball);
 
     betAmountOfExistingBalls.update((value) => ({ ...value, [ball.id]: this.betAmount }));
     balance.update((balance) => balance - this.betAmount);
     this.dropCount--;
+    if(this.dropCount <= 0) return
+
+    this.ball = this.renderBall(0.1, 268, { isStatic: true });
+    Matter.Composite.add(this.engine.world, this.ball);
+    this.animateDrawBall(this.ball, 0.1, 0.5, 0.008);
+  }
+
+  renderBall(textureScale?: number, positionX?: number, options?: IBodyDefinition) {
+    //debugger
+    let ballOffsetRangeX: number;
+    if(positionX) {
+      ballOffsetRangeX = positionX
+    } else {
+      const mapBallOffset = this.mapsBallOffset[this.currentIndexMapBallOffset];
+      ballOffsetRangeX = this.ballOffset[mapBallOffset[this.dropCount-1]];
+    }
+    if(!textureScale) {
+      textureScale = 0.5;
+    }
+    const ballRadius = this.pinRadius * 2 + 7;
+    const { friction, frictionAirByRowCount } = PlinkoEngine.ballFrictions;
+
+    return Matter.Bodies.circle(
+        ballOffsetRangeX,
+        30,
+        ballRadius,
+        {
+          restitution: 0.8, // Bounciness
+          friction,
+          frictionAir: frictionAirByRowCount[this.rowCount],
+          collisionFilter: {
+            category: PlinkoEngine.BALL_CATEGORY,
+            mask: PlinkoEngine.PIN_CATEGORY, // Collide with pins only, but not other balls
+          },
+          render: {
+            fillStyle: '#ff0000',
+            sprite: {
+              texture: 'src/img/ball-drop.png', // Путь к изображению
+              xScale: textureScale,
+              yScale: textureScale
+            }
+          },
+          ...options
+        },
+    );
+  }
+
+  animateDrawBall(ball, scale, maxScale, animationSpeed) {
+    function animate() {
+      if (scale < maxScale) {
+        scale = scale + animationSpeed;
+        ball.render.sprite.xScale = scale;
+        ball.render.sprite.yScale = scale;
+        requestAnimationFrame(animate);
+      }
+    }
+    animate();
   }
 
   /**

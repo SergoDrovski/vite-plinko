@@ -125,7 +125,7 @@
 
 <style lang="scss">
   .control-game {
-    margin-top: 30px;
+    margin-top: 10px;
     $self: &;
 
     &__play {

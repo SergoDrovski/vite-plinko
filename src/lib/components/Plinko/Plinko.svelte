@@ -29,9 +29,7 @@
     </div>
     <BinsRow />
   </div>
-  <div class="game-plinko__last-wins absolute right-[5%] top-1/2 -translate-y-1/2">
-    <LastWins />
-  </div>
+  <LastWins />
 </div>
 
 <style lang="scss">
@@ -48,6 +46,5 @@
       height: 100%;
       inset: 0;
     }
-    &__last-wins {}
   }
 </style>
