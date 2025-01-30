@@ -126,7 +126,7 @@ img {
 
 section {
   color: #fff;
-  height: 600px;
+  min-height: 600px;
 }
 
 .button {
@@ -765,6 +765,79 @@ section {
   @media (min-width: 768px) {
     & .container {
       background-position: 100% 58%;
+    }
+  }
+}
+.faq {
+  &__title {
+    padding-top: 30px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+  }
+  .accordion {
+    &__wrapper {
+      width: 100%;
+      min-height: 40px;
+      padding: 10px 14px;
+      margin-bottom: 5px;
+      background-color: #fff;
+      color: #000;
+      text-align: left;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      outline: none;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__header {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__icon {
+      display: inline-flex;
+      width: 20px;
+      height: 20px;
+      font-size: 24px;
+      font-weight: 300;
+      transition: transform 0.3s ease;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__content {
+      font-size: 10px;
+      line-height: 12px;
+      font-weight: 400;
+      color: hsla(235, 18%, 40%, 1);
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        max-height 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+      p {
+        margin: 10px 0;
+      }
+    }
+
+    .accordion__item.active .accordion__content {
+      max-height: 1000px;
+      opacity: 1;
     }
   }
 }

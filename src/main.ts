@@ -56,4 +56,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initialize the timer display and start the countdown
     updateTimerDisplay();
     startCountdown();
+    
 });
