@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 // Select the timer display element
     const timerElement = document.querySelector('.bonus__time') as HTMLSpanElement;
@@ -41,7 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
+    const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        // loop: true,
+        spaceBetween: 19,
+    
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+
 // Initialize the timer display and start the countdown
     updateTimerDisplay();
     startCountdown();
+    
 });
