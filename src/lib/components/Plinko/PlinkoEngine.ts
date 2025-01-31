@@ -9,7 +9,6 @@ import {
   totalProfitHistory,
 } from '$lib/stores/game';
 import type { RiskLevel, RowCount } from '$lib/types/game';
-import { getRandomBetween } from '$lib/utils/numbers';
 import Matter, { type IBodyDefinition } from 'matter-js';
 import { get } from 'svelte/store';
 import { v4 as uuidv4 } from 'uuid';
@@ -102,8 +101,7 @@ class PlinkoEngine {
       16: 0.0364,
     },
   };
-
-  public ballOffset: number[] = [274, 260, 269, 268, 267, 270, 271, 275, 274];
+  public ballOffset: number[] = [261.5,267,269.5,270,273,271,265,268,267.5];
 
   public mapsBallOffset: number[][] = [
     [0, 7, 4, 4, 8],
@@ -163,6 +161,7 @@ class PlinkoEngine {
     // Создаем статичную лунку
     const hole = Matter.Bodies.circle(268, 30, 20, {
       isStatic: true,
+      isSensor: true,
       render: {
         fillStyle: "black",
         strokeStyle: 'rgba(182,182,182,0.45)',
@@ -233,6 +232,18 @@ class PlinkoEngine {
    *     8: 274,
    * }
    *
+   * {
+   *     0: 261.5,
+   *     1: 267,
+   *     2: 269.5,
+   *     3: 270,
+   *     4: 273,
+   *     5: 271,
+   *     6: 265,
+   *     7: 268,
+   *     8: 267.5,
+   * }
+   *
    * [4, 4, 3, 5, 8]
    * [0, 2, 3, 3, 6]
    * [1, 2, 3, 6, 6]
@@ -268,6 +279,7 @@ class PlinkoEngine {
     } else {
       const mapBallOffset = this.mapsBallOffset[this.currentIndexMapBallOffset];
       ballOffsetRangeX = this.ballOffset[mapBallOffset[this.dropCount-1]];
+      //ballOffsetRangeX = 268;
     }
     if(!textureScale) {
       textureScale = 0.5;

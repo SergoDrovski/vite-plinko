@@ -1,4 +1,4 @@
-import type { RowCount } from '$lib/types';
+import type { RowCount } from '$lib/types/game.ts';
 
 /**
  * Calculate the probabilities of a ball falling into each bin (from left to right).

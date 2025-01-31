@@ -9,9 +9,9 @@
     winCount?: number;
   };
 
-  let { winCount = 4 }: Props = $props();
+  let { winCount = 5 }: Props = $props();
 
-  let lastWins = $derived($winRecords.slice(-winCount).toReversed());
+  let lastWins = $derived($winRecords.slice(-winCount));
 </script>
 
 <!-- Clamps in mobile:
@@ -20,12 +20,12 @@
  -->
 <div class="last-wins">
     {#if lastWins.length === 0}
-        <span class="last-wins__amount-item wins-visible">+0 €</span>
+        <span class="last-wins__amount-item wins-visible">0 €</span>
     {/if}
     {#each lastWins as {profit}, index}
         <span class="last-wins__amount-item
                     {index === lastWins.length - 1 ? 'wins-visible' : '' }"
-        >+{profit} €</span>
+        >+{Math.abs(profit)} €</span>
     {/each}
 </div>
 

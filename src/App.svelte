@@ -1,20 +1,21 @@
 <script lang="ts">
-  // import logo from '$lib/assets/logo.svg';
-  import Balance from '$lib/components/Balance.svelte';
   import Plinko from '$lib/components/Plinko/Plinko.svelte';
   import Sidebar from '$lib/components/Sidebar/Sidebar.svelte';
-  import { setBalanceFromLocalStorage, writeBalanceToLocalStorage } from '$lib/utils/game';
+  import ModalWins from '$lib/components/ModalWins.svelte';
 
-  // $effect(() => {
-  //   setBalanceFromLocalStorage();
-  // });
+  import { totalProfitHistory } from '$lib/stores/game';
+
+  let totalProfit = $derived($totalProfitHistory);
+
 </script>
 
-<!--<svelte:window onbeforeunload={writeBalanceToLocalStorage} />-->
 
 <div class="game-container">
   <Plinko />
   <Sidebar />
+  {#if totalProfit[totalProfit.length-1] === 450}
+    <ModalWins />
+  {/if}
 </div>
 
 <style lang="scss">
