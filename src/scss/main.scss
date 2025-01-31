@@ -567,9 +567,12 @@ section {
 
     .swiper-slide-text {
       margin-bottom: 10px;
+      max-height: 252px;
+      overflow-y: scroll;
       font-size: 14px;
       line-height: 21px;
       font-weight: 400;
+      letter-spacing: -0.6px;
       text-align: left;
     }
 
@@ -804,6 +807,9 @@ section {
   }
 }
 .faq {
+  .container {
+    padding-bottom: 26px;
+  }
   &__title {
     padding-top: 30px;
     margin-bottom: 10px;
@@ -904,7 +910,7 @@ section {
     }
 
     .accordion__item.active .accordion__icon::after {
-      transform: translate(-50%, -50%) rotate(0);
+      transform: translate(-50%, -50%) rotate(180deg);
     }
   }
 }
@@ -914,7 +920,7 @@ section {
 }
 
 .accordion__item.active .accordion__icon::after {
-  transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate(-50%, -50%) rotate(180deg);
 }
 
 .footer {
