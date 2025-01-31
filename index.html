@@ -156,13 +156,11 @@
         </p>
 
         <div class="video__content">
-          <img
-            class="video__visa"
-            src="src/img/video-game.webp"
-            width="335"
-            height="335"
-            alt="Video game"
-          />
+          <video width="335" height="335" muted playsinline controls="controls">
+            <source src="src/img/video-ogv.ogv" type="video/ogg" />
+            <source src="src/img/video-mp4.mp4" type="video/mp4" />
+            <source src="src/img/video-webm.webm" type="video/webm" />
+          </video>
         </div>
       </div>
     </section>
@@ -483,7 +481,7 @@
             <button class="accordion__wrapper">
               <div class="accordion__header">
                 Cos’è Plinko e come funziona?
-                <span class="accordion__icon">+</span>
+                <span class="accordion__icon"></span>
               </div>
 
               <div class="accordion__content">
@@ -509,7 +507,7 @@
             <button class="accordion__wrapper">
               <div class="accordion__header">
                 Quali sono le migliori strategie per giocare a Plinko?
-                <span class="accordion__icon">+</span>
+                <span class="accordion__icon"></span>
               </div>
 
               <div class="accordion__content">
@@ -535,7 +533,7 @@
             <button class="accordion__wrapper">
               <div class="accordion__header">
                 Come iniziare a giocare e ottenere il bonus?
-                <span class="accordion__icon">+</span>
+                <span class="accordion__icon"></span>
               </div>
 
               <div class="accordion__content">
@@ -561,7 +559,7 @@
             <button class="accordion__wrapper">
               <div class="accordion__header">
                 Come posso prelevare le mie vincite?
-                <span class="accordion__icon">+</span>
+                <span class="accordion__icon"></span>
               </div>
 
               <div class="accordion__content">
@@ -587,7 +585,7 @@
             <button class="accordion__wrapper">
               <div class="accordion__header">
                 È sicuro effettuare un deposito?
-                <span class="accordion__icon">+</span>
+                <span class="accordion__icon"></span>
               </div>
 
               <div class="accordion__content">
@@ -613,7 +611,7 @@
             <button class="accordion__wrapper">
               <div class="accordion__header">
                 Quali sono le probabilità di vincita?
-                <span class="accordion__icon">+</span>
+                <span class="accordion__icon"></span>
               </div>
 
               <div class="accordion__content">
@@ -639,7 +637,7 @@
             <button class="accordion__wrapper">
               <div class="accordion__header">
                 Plinko è legale?
-                <span class="accordion__icon">+</span>
+                <span class="accordion__icon"></span>
               </div>
 
               <div class="accordion__content">
@@ -690,23 +688,7 @@
           const content = item.querySelector(".accordion__content");
           const icon = button.querySelector(".accordion__icon");
 
-          // Переключаем класс "active" для анимации
           item.classList.toggle("active");
-
-          // Переключаем иконку +/-
-          if (item.classList.contains("active")) {
-            icon.textContent = "-";
-          } else {
-            icon.textContent = "+";
-          }
-
-          // Скрываем все другие открытые блоки
-          document.querySelectorAll(".accordion__item").forEach((otherItem) => {
-            if (otherItem !== item) {
-              // otherItem.classList.remove("active");
-              otherItem.querySelector(".accordion__icon").textContent = "+";
-            }
-          });
         });
       });
     </script>

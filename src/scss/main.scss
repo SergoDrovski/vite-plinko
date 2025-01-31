@@ -844,6 +844,7 @@ section {
     }
 
     &__icon {
+      position: relative;
       display: inline-flex;
       width: 20px;
       height: 20px;
@@ -852,6 +853,29 @@ section {
       transition: transform 0.3s ease;
       align-items: center;
       justify-content: center;
+      transition: transform 0.3s ease-in-out;
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 1px;
+        background-color: #000;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      /* Начальная позиция для крестика */
+      &::before {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      &::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
     }
 
     &__content {
@@ -874,7 +898,23 @@ section {
       max-height: 1000px;
       opacity: 1;
     }
+
+    .accordion__item.active .accordion__icon::before {
+      transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
+    }
+
+    .accordion__item.active .accordion__icon::after {
+      transform: translate(-50%, -50%) rotate(0);
+    }
   }
+}
+
+.accordion__item.active .accordion__icon::before {
+  transform: translate(-50%, -50%) rotate(0deg) scaleX(1);
+}
+
+.accordion__item.active .accordion__icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
 }
 
 .footer {
