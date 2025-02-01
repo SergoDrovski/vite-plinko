@@ -16,10 +16,6 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
   </head>
   <body>
     <section class="info">
@@ -782,17 +778,6 @@
         </div>
       </div>
     </section>
-    <script>
-      document.querySelectorAll(".accordion__wrapper").forEach((button) => {
-        button.addEventListener("click", () => {
-          const item = button.parentElement;
-          const content = item.querySelector(".accordion__content");
-          const icon = button.querySelector(".accordion__icon");
-
-          item.classList.toggle("active");
-        });
-      });
-    </script>
     <footer class="footer">
       <div class="footer__wrapper">
         <p class="footer__site">plinko.com</p>
@@ -801,6 +786,5 @@
     </footer>
     <script type="module" src="/src/app.ts"></script>
     <script type="module" src="/src/main.ts"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>

@@ -1,3 +1,5 @@
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
 
 document.addEventListener('DOMContentLoaded', () => {
 // Select the timer display element
@@ -42,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    const swiper = new Swiper('.swiper', {
+    Swiper.use([Navigation]);
+    new Swiper('.swiper', {
         direction: 'horizontal',
         // loop: true,
         spaceBetween: 19,
@@ -53,8 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       });
 
+    // Initialize the Accordion
+    function initAccordion() {
+        document.querySelectorAll(".accordion__wrapper").forEach((button) => {
+            button.addEventListener("click", () => {
+                const item = button.parentElement;
+                const content = item.querySelector(".accordion__content");
+                const icon = button.querySelector(".accordion__icon");
+
+                item.classList.toggle("active");
+            });
+        });
+    }
+
 // Initialize the timer display and start the countdown
     updateTimerDisplay();
     startCountdown();
-    
+    initAccordion();
 });
