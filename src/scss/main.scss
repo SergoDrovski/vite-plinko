@@ -809,6 +809,9 @@ section {
   }
 }
 .faq {
+  min-height: fit-content;
+
+  background-color: #12144E;
   .container {
     padding-bottom: 26px;
   }
@@ -897,9 +900,6 @@ section {
       transition:
         max-height 0.3s ease-in-out,
         opacity 0.3s ease-in-out;
-      p {
-        margin: 10px 0;
-      }
     }
 
     .accordion__item.active .accordion__content {
@@ -961,6 +961,105 @@ section {
 
   @media (min-width: 768px) {
     width: 768px;
+  }
+}
+
+.game-modal {
+  display: none;
+  position: fixed;
+  width: 295px;
+  height: 372px;
+  top: calc(50% - 186px);
+  background-color: rgba(18, 20, 78, 1);
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 14px;
+  animation: wipe-modal 1s 1;
+
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    padding: 0 30px;
+    height: 372px;
+    background-image: url(/src/img/game-modal-bg.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  &__logo {
+    width: 87px;
+    height: 35px;
+  }
+  &__img {
+    width: 235px;
+    height: 84px;
+    margin-top: 3px;
+  }
+
+  &__content {
+    max-width: 275px;
+    text-align: end;
+    margin-left: auto;
+  }
+  &__title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  &__subtitle {
+    text-align: center;
+    line-height: 21px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 20px;
+    span {
+      font-size: 18px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+  }
+
+  &__description {
+    text-align: center;
+    margin-bottom: 15px;
+    line-height: 21px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  &__button {
+    margin-top: 0;
+    width: 87px;
+  }
+}
+
+@keyframes wipe-modal {
+  0% {
+    background-color: #ffffff;
+    transform: scale(0, .020)
+  }
+  30% {
+    background-color: #ffffff;
+  }
+  50% {
+    background-color: #12144EFF;
+    transform: scale(1, .020)
   }
 }
 

@@ -7,9 +7,10 @@
      * Number of last wins to display.
      */
     winCount?: number;
+    currency?: string;
   };
 
-  let { winCount = 5 }: Props = $props();
+  let { winCount = 5, currency = '€' }: Props = $props();
 
   let lastWins = $derived($winRecords.slice(-winCount));
 </script>
@@ -20,12 +21,12 @@
  -->
 <div class="last-wins">
     {#if lastWins.length === 0}
-        <span class="last-wins__amount-item wins-visible">0 €</span>
+        <span class="last-wins__amount-item wins-visible">0 {currency}</span>
     {/if}
     {#each lastWins as {profit}, index}
         <span class="last-wins__amount-item
                     {index === lastWins.length - 1 ? 'wins-visible' : '' }"
-        >+{Math.abs(profit)} €</span>
+        >+{Math.abs(profit)} {currency}</span>
     {/each}
 </div>
 

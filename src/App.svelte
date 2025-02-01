@@ -3,19 +3,32 @@
   import Sidebar from '$lib/components/Sidebar/Sidebar.svelte';
   import ModalWins from '$lib/components/ModalWins.svelte';
 
-  import { totalProfitHistory } from '$lib/stores/game';
+  import {totalProfitHistory} from '$lib/stores/game';
 
-  let totalProfit = $derived($totalProfitHistory);
+  const modal = document.querySelector('.game-modal') as HTMLElement;
+
+  const str = document.querySelector('#APP_DATA')?.textContent;
+  let appProps: any;
+
+  try {
+    appProps = JSON.parse(str);
+  } catch (e) {
+    appProps = {};
+  }
+
+  totalProfitHistory.subscribe((total) => {
+    if(modal && total[total.length-1] === 450) {
+      setTimeout(()=>{modal.style.display = 'block';}, 500);
+    }
+    return total;
+  });
 
 </script>
 
 
 <div class="game-container">
-  <Plinko />
-  <Sidebar />
-  {#if totalProfit[totalProfit.length-1] === 450}
-    <ModalWins />
-  {/if}
+  <Plinko currency="{appProps.currency}"/>
+  <Sidebar lang="{appProps}"/>
 </div>
 
 <style lang="scss">

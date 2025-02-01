@@ -7,7 +7,8 @@
   } from '$lib/stores/game';
   import { BetMode, RiskLevel } from '$lib/types/game';
   import type { FormEventHandler } from 'svelte/elements';
-  import { twMerge } from 'tailwind-merge';
+
+  let { lang } = $props();
 
   let betMode: BetMode = $state(BetMode.MANUAL);
 
@@ -101,23 +102,23 @@
       onclick={handleBetClick}
       disabled={isDropBallDisabled}
       class='control-game__play'
-  > Giocare </button>
+  >{lang?.playBtn ?? 'Play'}</button>
 
   <div class="control-game__pricing">
     <div class="control-game__bet-amount">
       <div class="control-game__balance">
-        <span class="control-game__title">Scommessa</span>
+        <span class="control-game__title">{lang?.bet ?? 'bet'}</span>
         <span class="control-game__amount"> {$betAmount}
-          <span class="control-game__currency">€</span>
+          <span class="control-game__currency">{lang?.currency ?? '€'}</span>
         </span>
       </div>
     </div>
 
     <div class="control-game__balance">
-      <span class="control-game__title">Equilibrio</span>
+      <span class="control-game__title">{lang?.balance ?? 'Balance'}</span>
       <span class="control-game__amount">
           {balanceFormatted}
-            <span class="control-game__currency">€</span>
+            <span class="control-game__currency">{lang?.currency ?? '€'}</span>
       </span>
     </div>
   </div>
@@ -186,10 +187,6 @@
       border-radius: 14px;
 
       background-color: hsla(0, 0%, 100%, 0.05);
-
-      &.bg-transparent {
-        background-color: transparent;
-      }
 
       #{$self}__title {
         font-size: 10px;

@@ -8,6 +8,8 @@
 
   const { WIDTH, HEIGHT } = PlinkoEngine;
 
+  let { currency } = $props();
+
   const initPlinko: Action<HTMLCanvasElement> = (node) => {
     //debugger
     $plinkoEngine = new PlinkoEngine(node);
@@ -22,19 +24,24 @@
 </script>
 
 <div class="game-plinko">
-  <div style:max-width={`${WIDTH}px`}>
+  <div class="game-plinko__container" style:max-width={`${WIDTH}px`}>
     <div class="game-plinko__wrapper" style:aspect-ratio={`${WIDTH} / ${HEIGHT}`}>
       <canvas use:initPlinko width={WIDTH} height={HEIGHT} class="game-plinko__canvas">
       </canvas>
     </div>
     <BinsRow />
   </div>
-  <LastWins />
+  <LastWins currency="{currency}"/>
 </div>
 
 <style lang="scss">
   .game-plinko {
     $self: &;
+
+    &__container {
+      margin-inline: auto;
+    }
+
     &__wrapper {
       position: relative;
       width: 100%;
