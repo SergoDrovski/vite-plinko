@@ -1,6 +1,4 @@
 import { RiskLevel } from '$lib/types/game';
-import { getBinColors } from '$lib/utils/colors';
-import { computeBinProbabilities } from '$lib/utils/numbers';
 
 export const DEFAULT_BALANCE = 2000;
 
@@ -20,33 +18,6 @@ export const rowCountOptions = [8, 9, 10, 11, 12, 13, 14, 15, 16] as const;
  * Количество рядов кеглей, поддерживаемых игрой.
  */
 export type RowCount = (typeof rowCountOptions)[number];
-
-/**
- * Интервал (в миллисекундах) для автоматического размещения ставок.
- */
-export const autoBetIntervalMs = 250;
-
-/**
- * Для каждой строки указывается количество цветов фона и теней в каждой ячейке.
- */
-export const binColorsByRowCount = rowCountOptions.reduce(
-  (acc, rowCount) => {
-    acc[rowCount] = getBinColors(rowCount);
-    return acc;
-  },
-  {} as Record<RowCount, ReturnType<typeof getBinColors>>,
-);
-
-/**
- * Для каждого количества строк определите, какова вероятность того, что мяч упадет в каждую ячейку.
- */
-export const binProbabilitiesByRowCount: Record<RowCount, number[]> = rowCountOptions.reduce(
-  (acc, rowCount) => {
-    acc[rowCount] = computeBinProbabilities(rowCount);
-    return acc;
-  },
-  {} as Record<RowCount, number[]>,
-);
 
 /**
  * Множители для каждой ячейки в зависимости от количества строк и уровня риска.
@@ -98,14 +69,3 @@ export const binPayouts: Record<RowCount, Record<RiskLevel, number[]>> = {
     [RiskLevel.HIGH]: [1000, 130, 26, 9, 4, 2, 0.2, 0.2, 0.2, 0.2, 0.2, 2, 4, 9, 26, 130, 1000],
   },
 };
-
-export const binColor = {
-  background: {
-    red: { r: 255, g: 0, b: 63 }, // rgb(255, 0, 63)
-    yellow: { r: 255, g: 192, b: 0 }, // rgb(255, 192, 0)
-  },
-  shadow: {
-    red: { r: 166, g: 0, b: 4 }, // rgb(166, 0, 4)
-    yellow: { r: 171, g: 121, b: 0 }, // rgb(171, 121, 0)
-  },
-} as const;

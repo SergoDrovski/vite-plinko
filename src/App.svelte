@@ -1,7 +1,6 @@
 <script lang="ts">
   import Plinko from '$lib/components/Plinko/Plinko.svelte';
   import Sidebar from '$lib/components/Sidebar/Sidebar.svelte';
-  import ModalWins from '$lib/components/ModalWins.svelte';
 
   import {totalProfitHistory} from '$lib/stores/game';
 
@@ -36,5 +35,4 @@
     margin-top: 11px;
     $self: &;
   }
-
 </style>

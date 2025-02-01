@@ -1,12 +1,10 @@
 <script lang="ts">
-  import { autoBetIntervalMs } from '$lib/constants/game';
   import {
     balance,
     betAmount,
     plinkoEngine,
   } from '$lib/stores/game';
-  import { BetMode, RiskLevel } from '$lib/types/game';
-  import type { FormEventHandler } from 'svelte/elements';
+  import { BetMode } from '$lib/types/game';
 
   let { lang } = $props();
 
@@ -15,7 +13,6 @@
   /**
    * When `betMode` is `AUTO`, the number of bets to be placed. Zero means infinite bets.
    */
-  let autoBetInput = $state(0);
 
   /**
    * Number of auto bets remaining when `betMode` is `AUTO`.
@@ -23,75 +20,19 @@
    * - `number`: Finite count of how many bets left. It decrements from `autoBetInput` to 0.
    * - `null`: For infinite bets (i.e. `autoBetInput` is 0).
    */
-  let autoBetsLeft: number | null = $state(null);
-
-  let autoBetInterval: ReturnType<typeof setInterval> | null = $state(null);
-
-  let isBetAmountNegative = $derived($betAmount < 0);
-  let isBetExceedBalance = $derived($betAmount > $balance);
-  let isAutoBetInputNegative = $derived(autoBetInput < 0);
 
   let isDropBallDisabled = $derived(
-    $plinkoEngine === null || isBetAmountNegative || isBetExceedBalance || isAutoBetInputNegative,
+    $plinkoEngine === null,
   );
-
-  const handleBetAmountFocusOut: FormEventHandler<HTMLInputElement> = (e) => {
-    const parsedValue = parseFloat(e.currentTarget.value.trim());
-    if (isNaN(parsedValue)) {
-      $betAmount = -1; // If input field is empty, this forces re-render so its value resets to 0
-      $betAmount = 0;
-    } else {
-      $betAmount = parsedValue;
-    }
-  };
 
   let balanceFormatted = $derived(
-          $balance.toLocaleString('ru-RU'),
+    $balance.toLocaleString('ru-RU'),
   );
-
-  let betAmountFormatted = $derived(
-          $betAmount.toLocaleString('ru-RU'),
-  );
-
-  function resetAutoBetInterval() {
-    if (autoBetInterval !== null) {
-      clearInterval(autoBetInterval);
-      autoBetInterval = null;
-    }
-  }
-
-  function autoBetDropBall() {
-    if (isBetExceedBalance) {
-      resetAutoBetInterval();
-      return;
-    }
-
-    // Infinite mode
-    if (autoBetsLeft === null) {
-      $plinkoEngine?.dropBall();
-      return;
-    }
-
-    // Finite mode
-    if (autoBetsLeft > 0) {
-      $plinkoEngine?.dropBall();
-      autoBetsLeft -= 1;
-    }
-    if (autoBetsLeft === 0 && autoBetInterval !== null) {
-      resetAutoBetInterval();
-      return;
-    }
-  }
 
   function handleBetClick() {
     //debugger
     if (betMode === BetMode.MANUAL) {
       $plinkoEngine?.dropBall();
-    } else if (autoBetInterval === null) {
-      autoBetsLeft = autoBetInput === 0 ? null : autoBetInput;
-      autoBetInterval = setInterval(autoBetDropBall, autoBetIntervalMs);
-    } else if (autoBetInterval !== null) {
-      resetAutoBetInterval();
     }
   }
 

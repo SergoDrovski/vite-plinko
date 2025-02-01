@@ -1,6 +1,5 @@
 <script lang="ts">
   import { plinkoEngine } from '$lib/stores/game';
-  import CircleNotch from 'phosphor-svelte/lib/CircleNotch';
   import type { Action } from 'svelte/action';
   import BinsRow from './BinsRow.svelte';
   import LastWins from './LastWins.svelte';
@@ -11,7 +10,6 @@
   let { currency } = $props();
 
   const initPlinko: Action<HTMLCanvasElement> = (node) => {
-    //debugger
     $plinkoEngine = new PlinkoEngine(node);
     $plinkoEngine.start();
 

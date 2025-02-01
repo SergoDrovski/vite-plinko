@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { binColorsByRowCount } from '$lib/constants/game';
   import { winRecords } from '$lib/stores/game';
 
   type Props = {
