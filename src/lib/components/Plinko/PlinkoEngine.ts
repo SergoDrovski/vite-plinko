@@ -1,4 +1,6 @@
 import { binPayouts } from '$lib/constants/game';
+import ballTexture from '$lib/assets/ball.png';
+
 import {
   rowCount,
   winRecords,
@@ -302,7 +304,7 @@ class PlinkoEngine {
           render: {
             fillStyle: '#ff0000',
             sprite: {
-              texture: 'src/img/ball-drop.png', // Путь к изображению
+              texture: ballTexture, // Путь к изображению
               xScale: textureScale,
               yScale: textureScale
             }
