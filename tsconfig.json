@@ -1,24 +1,28 @@
 {
+  "files": [],
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "baseUrl": ".",
+    "paths": {
+      "$lib/*": [
+        "src/lib/*"
+      ]
+    },
+    "verbatimModuleSyntax": true
   },
-  "include": ["src"]
+  "include": [
+    "./ambient.d.ts",
+    "./non-ambient.d.ts",
+    "./types/**/$types.d.ts",
+    "./vite.config.js",
+    "./vite.config.ts",
+    "./tailwind.config.js",
+    "./src/**/*.js",
+    "./src/**/*.ts",
+    "./src/**/*.svelte",
+    "./node_modules/@types/**/*"
+  ],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    //{ "path": "./tsconfig.node.json" }
+  ]
 }

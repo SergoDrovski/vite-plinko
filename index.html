@@ -3,29 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" />
-    <link rel="icon" type="image/png" sizes="48x48" href="src/img/ball.png" id="FAVICON_.png">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="src/img/ball.png"
+      id="FAVICON_.png"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Plinko Bonus Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Geologica:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <section class="info">
       <div class="container">
         <div class="info__header">
           <div class="info__header-logo">
-              <img src="src/img/logotype.webp" width="78" height="28" alt="Plinko">
+            <a href="index.html">
+              <img
+                src="src/img/logotype.webp"
+                width="78"
+                height="28"
+                alt="Plinko"
+            /></a>
           </div>
-          <a href="#!" class="info__header-button">Giocare
-            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.745 5.30001L2.8 8.88501C2.45 9.09501 2 8.84501 2 8.43501V4.43501C2 2.69001 3.885 1.60001 5.4 2.47001L7.695 3.79001L8.74 4.39001C9.085 4.59501 9.09 5.09501 8.745 5.30001Z" fill="white"/>
-              <path d="M9.04503 8.23001L7.02003 9.40001L5.00003 10.565C4.27503 10.98 3.45503 10.895 2.86003 10.475C2.57003 10.275 2.60503 9.83001 2.91003 9.65001L9.26503 5.84001C9.56503 5.66001 9.96003 5.83001 10.015 6.17501C10.14 6.95001 9.82003 7.78501 9.04503 8.23001Z" fill="white"/>
+          <a href="#!" class="info__header-button button"
+            >Giocare
+            <svg
+              width="12"
+              height="13"
+              viewBox="0 0 12 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.745 5.30001L2.8 8.88501C2.45 9.09501 2 8.84501 2 8.43501V4.43501C2 2.69001 3.885 1.60001 5.4 2.47001L7.695 3.79001L8.74 4.39001C9.085 4.59501 9.09 5.09501 8.745 5.30001Z"
+                fill="white"
+              />
+              <path
+                d="M9.04503 8.23001L7.02003 9.40001L5.00003 10.565C4.27503 10.98 3.45503 10.895 2.86003 10.475C2.57003 10.275 2.60503 9.83001 2.91003 9.65001L9.26503 5.84001C9.56503 5.66001 9.96003 5.83001 10.015 6.17501C10.14 6.95001 9.82003 7.78501 9.04503 8.23001Z"
+                fill="white"
+              />
             </svg>
           </a>
         </div>
 
         <div class="info__content">
           <h1 class="info__title">
-            Un gioco semplice.<br>
+            Un gioco semplice.<br />
             <span class="highlight">Soldi facili.</span>
           </h1>
           <p class="info__description">
@@ -35,26 +63,728 @@
 
           <div class="bonus">
             <div class="bonus__image">
-              <img src="src/img/bonus-img.webp" width="213" height="158" alt="Bonus">
+              <img
+                src="src/img/bonus-img.webp"
+                width="213"
+                height="158"
+                alt="Bonus"
+              />
               <div class="bonus__image-text highlight">BONUS</div>
             </div>
-            <p class="bonus__note">Non perdere l'occasione: il bonus è valido solo oggi!</p>
-            <a href="#!" class="bonus__button">Ritirare il bonus</a>
-            <p class="bonus__timer">Affrettati a ritirarlo: <span class="bonus__time">23:59:30</span></p>
+            <p class="bonus__note">
+              Non perdere l'occasione: il bonus è valido solo oggi!
+            </p>
+            <a href="#!" class="bonus__button button">Ritirare il bonus</a>
+            <p class="bonus__timer">
+              Affrettati a ritirarlo: <span class="bonus__time">23:59:30</span>
+            </p>
           </div>
         </div>
 
         <div class="info__footer">
           <div class="info__footer-payments">
-            <img src="src/img/payment-VISA.svg" alt="VISA">
-            <img src="src/img/payment-Mastercard.svg" alt="Mastercard">
-            <img src="src/img/payment-Skrill.svg" alt="Skrill">
-            <img src="src/img/payment-Revolut.svg" alt="Revolut">
-            <img src="src/img/payment-Bitcoin.svg" alt="Bitcoin">
+            <img src="src/img/payment-VISA.svg" alt="VISA" />
+            <img src="src/img/payment-Mastercard.svg" alt="Mastercard" />
+            <img src="src/img/payment-Skrill.svg" alt="Skrill" />
+            <img src="src/img/payment-Revolut.svg" alt="Revolut" />
+            <img src="src/img/payment-Bitcoin.svg" alt="Bitcoin" />
           </div>
         </div>
       </div>
     </section>
+
+    <section class="game">
+      <div class="container">
+        <h2 class="game__title">Provalo adesso</h2>
+
+        <div id="app"></div>
+        <script id="APP_DATA" type="application/json">
+          {
+            "playBtn": "Giocare",
+            "balance": "Equilibrio",
+            "bet": "Scommessa",
+            "currency": "€"
+          }
+        </script>
+        <div class="game-modal">
+          <div class="container">
+            <div class="game-modal__header">
+              <img
+                      class="game-modal__logo"
+                      src="src/img/logotype.webp"
+                      width="87"
+                      height="35"
+                      alt="Plinko"
+              />
+              <img
+                      class="game-modal__img"
+                      src="src/img/game-modal-mega-win-img.svg"
+                      width="235"
+                      height="84"
+                      alt="Mega win"
+              />
+            </div>
+            <p class="game-modal__title">Congratulazioni!</p>
+            <p class="game-modal__subtitle">
+              La tua vincita:<br /><span>€450 + 250 giri gratuiti</span>
+            </p>
+            <p class="game-modal__description">
+              Clicca sul pulsante “Giocare” per riscattare la tua vincita.
+            </p>
+            <a href="#" class="game-modal__button button">Giocare </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="deposit">
+      <div class="container">
+        <div class="deposit__content">
+          <h2 class="deposit__title">
+            Deposito di 30€? Preleva fino a 1000€ già oggi!
+          </h2>
+          <p class="deposit__description">
+            Garantiamo pagamenti sicuri e veloci su Visa/MasterCard. Tutto è
+            trasparente e affidabile.
+          </p>
+
+          <div class="deposit__images">
+            <img
+              class="deposit__visa"
+              src="src/img/visa-logo.svg"
+              width="213"
+              height="158"
+              alt="Visa"
+            />
+            <img
+              class="deposit__mastercard"
+              src="src/img/Mastercard-logo.png"
+              width="213"
+              height="158"
+              alt="Mastercard"
+            />
+          </div>
+
+          <div class="deposit__amount">
+            <p class="deposit__amount-title">
+              Oltre<br />
+              <span>10.000</span><br />
+              utenti
+            </p>
+            <p class="deposit__amount-subtitle">
+              hanno già ricevuto le loro vincite senza ritardi.
+            </p>
+          </div>
+        </div>
+        <div class="deposit__woman"></div>
+      </div>
+    </section>
+    <section class="video">
+      <div class="container">
+        <h2 class="video__title">Plinko: gioco Con RTP fino al 97%!</h2>
+        <p class="video__description">
+          Basta scegliere una scommessa, rilasciare la palla e moltiplica i tuoi
+          soldi!
+        </p>
+
+        <div class="video__content">
+          <video width="335" height="335" muted playsinline controls="controls">
+            <source src="src/img/video-ogv.ogv" type="video/ogg" />
+            <source src="src/img/video-mp4.mp4" type="video/mp4" />
+            <source src="src/img/video-webm.webm" type="video/webm" />
+          </video>
+        </div>
+      </div>
+    </section>
+    <section class="reviews">
+      <div class="container">
+        <h2 class="reviews__title">Emozioni dei giocatori e recensioni</h2>
+        <div class="swiper reviews__swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="swiper-slide-header">
+                <img
+                  class="swiper-slide-img"
+                  src="src/img/slider-img-1.webp"
+                  loading="lazy"
+                  alt="Luca"
+                  width="80"
+                />
+                <div class="swiper-slide-name-wrapper">
+                  <p class="swiper-slide-name">Luca</p>
+                  <p class="swiper-slide-info">34 anni, Milano</p>
+                </div>
+              </div>
+              <div class="swiper-slide-content">
+                <p class="swiper-slide-text">
+                  Sono sempre stato scettico, ma ho deciso di provare Plinko
+                  dopo aver visto la pubblicità con il bonus di 450€ e 250 giri
+                  gratuiti. Mi sono registrato, ho depositato 50€ e, nel giro di
+                  un paio di giorni, il mio saldo è cresciuto fino a 5.000€.
+                  Ancora non ci credo, ma quei soldi sono arrivati davvero sulla
+                  mia carta Visa in soli 5 minuti dopo il prelievo. Ho aggiunto
+                  queste vincite ai miei risparmi e ho comprato l’auto che
+                  sognavo da tempo! Grazie per questa opportunità di cambiare
+                  vita!
+                </p>
+                <img
+                  class="swiper-slide-content-img"
+                  src="src/img/slider-img-big-1.webp"
+                  loading="lazy"
+                  alt="Luca"
+                  width="56"
+                />
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-header">
+                <img
+                  class="swiper-slide-img"
+                  src="src/img/slider-img-2.webp"
+                  loading="lazy"
+                  alt="Giuseppe"
+                  width="80"
+                />
+                <div class="swiper-slide-name-wrapper">
+                  <p class="swiper-slide-name">Giuseppe</p>
+                  <p class="swiper-slide-info">37 anni, Firenze</p>
+                </div>
+              </div>
+              <div class="swiper-slide-content">
+                <p class="swiper-slide-text">
+                  Ho sempre avuto l’idea di aprire un piccolo ristorante di
+                  famiglia, ma mancava il capitale iniziale. Per caso ho
+                  scoperto Plinko e ho deciso di provare. Ho depositato 50€, e
+                  già il secondo giorno avevo vinto 7.500€. Ho prelevato i soldi
+                  su MasterCard in pochi minuti. Ora io e la mia famiglia
+                  abbiamo aperto il ristorante, e tutto grazie a questa
+                  opportunità. Lo consiglio a chiunque, funziona davvero!
+                </p>
+                <img
+                  class="swiper-slide-content-img"
+                  src="src/img/slider-img-big-2.webp"
+                  loading="lazy"
+                  alt="Giuseppe"
+                  width="56"
+                />
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-header">
+                <img
+                  class="swiper-slide-img"
+                  src="src/img/slider-img-3.webp"
+                  loading="lazy"
+                  alt="Nicola"
+                  width="80"
+                />
+                <div class="swiper-slide-name-wrapper">
+                  <p class="swiper-slide-name">Nicola</p>
+                  <p class="swiper-slide-info">29 anni, Venezia</p>
+                </div>
+              </div>
+              <div class="swiper-slide-content">
+                <p class="swiper-slide-text">
+                  Non sono una persona particolarmente incline al gioco, ma ho
+                  deciso di provare Plinko perché i miei amici dicevano che
+                  funzionava. Il mio primo deposito è stato di 10€, e ho vinto
+                  500€. Onestamente, ero incredulo. Ho usato quei soldi per
+                  comprare un regalo a mia moglie: un bracciale che desiderava
+                  da tanto tempo. Grazie per questa opportunità, è davvero
+                  fantastico!
+                </p>
+                <img
+                  class="swiper-slide-content-img"
+                  src="src/img/slider-img-big-3.webp"
+                  loading="lazy"
+                  alt="Nicola"
+                  width="56"
+                />
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-header">
+                <img
+                  class="swiper-slide-img"
+                  src="src/img/slider-img-4.webp"
+                  loading="lazy"
+                  alt="Maria"
+                  width="80"
+                />
+                <div class="swiper-slide-name-wrapper">
+                  <p class="swiper-slide-name">Maria</p>
+                  <p class="swiper-slide-info">28 anni, Roma</p>
+                </div>
+              </div>
+              <div class="swiper-slide-content">
+                <p class="swiper-slide-text">
+                  Ho sempre sognato di viaggiare, ma non potevo permettermi una
+                  vacanza. Ho deciso di provare Plinko, visto che il bonus
+                  sembrava interessante e il gioco era semplice e intuitivo. Mi
+                  sono registrata, ho depositato 20€, e dopo qualche ora di
+                  gioco ho vinto 2.500€. Ero sotto shock! Ho prelevato i soldi
+                  immediatamente e il giorno dopo ho comprato un biglietto per
+                  Barcellona. Ragazzi, funziona davvero!
+                </p>
+                <img
+                  class="swiper-slide-content-img"
+                  src="src/img/slider-img-big-4.webp"
+                  loading="lazy"
+                  alt="Maria"
+                  width="56"
+                />
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-header">
+                <img
+                  class="swiper-slide-img"
+                  src="src/img/slider-img-5.webp"
+                  loading="lazy"
+                  alt="Federico"
+                  width="80"
+                />
+                <div class="swiper-slide-name-wrapper">
+                  <p class="swiper-slide-name">Federico</p>
+                  <p class="swiper-slide-info">30 anni, Torino</p>
+                </div>
+              </div>
+              <div class="swiper-slide-content">
+                <p class="swiper-slide-text">
+                  Ho iniziato a giocare per divertimento, ma non avrei mai
+                  immaginato un risultato del genere. Ho depositato 20€, ho
+                  giocato qualche partita a Plinko e il mio saldo è arrivato a
+                  3.000€. Ho richiesto il prelievo immediatamente, e i soldi
+                  sono arrivati sulla mia carta in 10 minuti. Con quei soldi ho
+                  saldato tutti i debiti. Ora gioco regolarmente, e Plinko è
+                  diventato un ottimo modo per guadagnare qualcosa in più.
+                </p>
+                <img
+                  class="swiper-slide-content-img"
+                  src="src/img/slider-img-big-5.webp"
+                  loading="lazy"
+                  alt="Federico"
+                  width="56"
+                />
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-header">
+                <img
+                  class="swiper-slide-img"
+                  src="src/img/slider-img-6.webp"
+                  loading="lazy"
+                  alt="Antonio"
+                  width="80"
+                />
+                <div class="swiper-slide-name-wrapper">
+                  <p class="swiper-slide-name">Antonio</p>
+                  <p class="swiper-slide-info">40 anni, Napoli</p>
+                </div>
+              </div>
+              <div class="swiper-slide-content">
+                <p class="swiper-slide-text">
+                  Onestamente, non ho mai creduto a queste cose, ma ho deciso di
+                  rischiare per curiosità. Ho iniziato con un deposito di 100€,
+                  ho scelto Plinko, perché prometteva un RTP elevato. La prima
+                  pallina è caduta su un moltiplicatore 1000x e ho vinto subito
+                  10.000€. Dopo aver giocato altre volte, il mio saldo è salito
+                  fino a 50.000€. Con quei soldi ho fatto l’anticipo per una
+                  casa a Napoli. Se qualcuno me l’avesse detto, non ci avrei mai
+                  creduto. Ora gioco regolarmente!
+                </p>
+                <img
+                  class="swiper-slide-content-img"
+                  src="src/img/slider-img-big-6.webp"
+                  loading="lazy"
+                  alt="Antonio"
+                  width="56"
+                />
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-header">
+                <img
+                  class="swiper-slide-img"
+                  src="src/img/slider-img-7.webp"
+                  loading="lazy"
+                  alt="Alessandro"
+                  width="80"
+                />
+                <div class="swiper-slide-name-wrapper">
+                  <p class="swiper-slide-name">Alessandro</p>
+                  <p class="swiper-slide-info">36 anni, Verona</p>
+                </div>
+              </div>
+              <div class="swiper-slide-content">
+                <p class="swiper-slide-text">
+                  Quando ho visto la pubblicità di Plinko, ho pensato: un’altra
+                  truffa. Ma ho deciso di provare per il bonus. Ho depositato
+                  30€, ho giocato per circa un’ora e alla fine ho vinto 4.000€.
+                  Ho usato quei soldi per ristrutturare casa e comprare mobili
+                  per la cameretta dei miei figli. Credo che sia uno dei modi
+                  più veloci per guadagnare soldi, soprattutto se non puoi
+                  rischiare grandi somme.
+                </p>
+                <img
+                  class="swiper-slide-content-img"
+                  src="src/img/slider-img-big-7.webp"
+                  loading="lazy"
+                  alt="Antonio"
+                  width="56"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="pagination">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="steps">
+      <div class="container">
+        <h2 class="steps__title">Come iniziare a giocare?</h2>
+
+        <div class="steps__wrapper">
+          <div class="steps__one steps-part">
+            <div class="steps__left button">Giocare</div>
+            <div class="steps__right">
+              <div class="steps__number steps__number--one"></div>
+              <div class="steps__description">Clicca su “Gioca”</div>
+            </div>
+          </div>
+
+          <div class="steps__two steps-part">
+            <img
+              class="steps__left steps__two-img"
+              src="src/img/step-img-2.webp"
+              width="98"
+              height="98"
+              alt="Step two"
+            />
+            <div class="steps__right">
+              <div class="steps__number steps__number--two"></div>
+              <div class="steps__description">Registrati</div>
+            </div>
+          </div>
+
+          <div class="steps__three steps-part">
+            <img
+              class="steps__left steps__three-img"
+              src="src/img/step-img-3.webp"
+              width="94"
+              height="73"
+              alt="Step three"
+            />
+            <div class="steps__right">
+              <div class="steps__number steps__number--three"></div>
+              <div class="steps__description">Prova Plinko gratis</div>
+            </div>
+          </div>
+
+          <div class="steps__four steps-part">
+            <img
+              class="steps__left steps__four-img"
+              src="src/img/step-img-4.webp"
+              width="90"
+              height="90"
+              alt="Step four"
+            />
+            <div class="steps__right">
+              <div class="steps__number steps__number--four"></div>
+              <div class="steps__description">
+                Effettua un deposito e inizia a vincere alla grande
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="faq">
+      <div class="container">
+        <h2 class="faq__title">FAQ</h2>
+
+        <div class="faq__accordion accordion">
+          <div class="accordion__item">
+            <button class="accordion__wrapper">
+              <div class="accordion__header">
+                Cos’è Plinko e come funziona?
+                <span class="accordion__icon"></span>
+              </div>
+              <div class="accordion__content">
+                <p style="margin-top: 5px">
+                  Sebbene Plinko sia un gioco d’azzardo, ci sono alcune
+                  strategie che i giocatori possono utilizzare per migliorare la
+                  loro esperienza:
+                </p>
+                <ul style="margin-top: 2px">
+                  <li>• Inizia con puntate più piccole per
+                    comprendere la dinamica del gioco prima di aumentare la
+                    scommessa.
+                  </li>
+                  <li>• Regola il livello di rischio per trovare
+                    l’impostazione che corrisponde alla tua tolleranza al rischio.
+                    Livelli di rischio più bassi di solito offrono vincite minori
+                    ma più frequenti, mentre livelli di rischio più alti possono
+                    portare a vincite maggiori ma meno frequenti.
+                  </li>
+                  <li>• Utilizza la
+                    funzione di gioco automatico per testare diverse strategie in
+                    più turni.
+                  </li>
+                  <li>• Imposta un budget per la tua sessione e
+                    rispettalo. Questo ti aiuta a gestire efficacemente il tuo
+                    bankroll ed evita spese eccessive.
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <div class="accordion__item active">
+            <button class="accordion__wrapper">
+              <div class="accordion__header">
+                Quali sono le migliori strategie per giocare a Plinko?
+                <span class="accordion__icon"></span>
+              </div>
+
+              <div class="accordion__content">
+                <p style="margin-top: 5px">
+                  Sebbene Plinko sia un gioco d’azzardo, ci sono alcune
+                  strategie che i giocatori possono utilizzare per migliorare la
+                  loro esperienza:
+                </p>
+                <ul style="margin-top: 2px">
+                  <li>• Inizia con puntate più piccole per
+                    comprendere la dinamica del gioco prima di aumentare la
+                    scommessa.
+                  </li>
+                  <li>• Regola il livello di rischio per trovare
+                    l’impostazione che corrisponde alla tua tolleranza al rischio.
+                    Livelli di rischio più bassi di solito offrono vincite minori
+                    ma più frequenti, mentre livelli di rischio più alti possono
+                    portare a vincite maggiori ma meno frequenti.
+                  </li>
+                  <li>• Utilizza la
+                    funzione di gioco automatico per testare diverse strategie in
+                    più turni.
+                  </li>
+                  <li>• Imposta un budget per la tua sessione e
+                    rispettalo. Questo ti aiuta a gestire efficacemente il tuo
+                    bankroll ed evita spese eccessive.
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__wrapper">
+              <div class="accordion__header">
+                Come iniziare a giocare e ottenere il bonus?
+                <span class="accordion__icon"></span>
+              </div>
+
+              <div class="accordion__content">
+                <p style="margin-top: 5px">
+                  Sebbene Plinko sia un gioco d’azzardo, ci sono alcune
+                  strategie che i giocatori possono utilizzare per migliorare la
+                  loro esperienza:
+                </p>
+                <ul style="margin-top: 2px">
+                  <li>• Inizia con puntate più piccole per
+                    comprendere la dinamica del gioco prima di aumentare la
+                    scommessa.
+                  </li>
+                  <li>• Regola il livello di rischio per trovare
+                    l’impostazione che corrisponde alla tua tolleranza al rischio.
+                    Livelli di rischio più bassi di solito offrono vincite minori
+                    ma più frequenti, mentre livelli di rischio più alti possono
+                    portare a vincite maggiori ma meno frequenti.
+                  </li>
+                  <li>• Utilizza la
+                    funzione di gioco automatico per testare diverse strategie in
+                    più turni.
+                  </li>
+                  <li>• Imposta un budget per la tua sessione e
+                    rispettalo. Questo ti aiuta a gestire efficacemente il tuo
+                    bankroll ed evita spese eccessive.
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__wrapper">
+              <div class="accordion__header">
+                Come posso prelevare le mie vincite?
+                <span class="accordion__icon"></span>
+              </div>
+
+              <div class="accordion__content">
+                <p style="margin-top: 5px">
+                  Sebbene Plinko sia un gioco d’azzardo, ci sono alcune
+                  strategie che i giocatori possono utilizzare per migliorare la
+                  loro esperienza:
+                </p>
+                <ul style="margin-top: 2px">
+                  <li>• Inizia con puntate più piccole per
+                    comprendere la dinamica del gioco prima di aumentare la
+                    scommessa.
+                  </li>
+                  <li>• Regola il livello di rischio per trovare
+                    l’impostazione che corrisponde alla tua tolleranza al rischio.
+                    Livelli di rischio più bassi di solito offrono vincite minori
+                    ma più frequenti, mentre livelli di rischio più alti possono
+                    portare a vincite maggiori ma meno frequenti.
+                  </li>
+                  <li>• Utilizza la
+                    funzione di gioco automatico per testare diverse strategie in
+                    più turni.
+                  </li>
+                  <li>• Imposta un budget per la tua sessione e
+                    rispettalo. Questo ti aiuta a gestire efficacemente il tuo
+                    bankroll ed evita spese eccessive.
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__wrapper">
+              <div class="accordion__header">
+                È sicuro effettuare un deposito?
+                <span class="accordion__icon"></span>
+              </div>
+
+              <div class="accordion__content">
+                <p style="margin-top: 5px">
+                  Sebbene Plinko sia un gioco d’azzardo, ci sono alcune
+                  strategie che i giocatori possono utilizzare per migliorare la
+                  loro esperienza:
+                </p>
+                <ul style="margin-top: 2px">
+                  <li>• Inizia con puntate più piccole per
+                    comprendere la dinamica del gioco prima di aumentare la
+                    scommessa.
+                  </li>
+                  <li>• Regola il livello di rischio per trovare
+                    l’impostazione che corrisponde alla tua tolleranza al rischio.
+                    Livelli di rischio più bassi di solito offrono vincite minori
+                    ma più frequenti, mentre livelli di rischio più alti possono
+                    portare a vincite maggiori ma meno frequenti.
+                  </li>
+                  <li>• Utilizza la
+                    funzione di gioco automatico per testare diverse strategie in
+                    più turni.
+                  </li>
+                  <li>• Imposta un budget per la tua sessione e
+                    rispettalo. Questo ti aiuta a gestire efficacemente il tuo
+                    bankroll ed evita spese eccessive.
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__wrapper">
+              <div class="accordion__header">
+                Quali sono le probabilità di vincita?
+                <span class="accordion__icon"></span>
+              </div>
+
+              <div class="accordion__content">
+                <p style="margin-top: 5px">
+                  Sebbene Plinko sia un gioco d’azzardo, ci sono alcune
+                  strategie che i giocatori possono utilizzare per migliorare la
+                  loro esperienza:
+                </p>
+                <ul style="margin-top: 2px">
+                  <li>• Inizia con puntate più piccole per
+                    comprendere la dinamica del gioco prima di aumentare la
+                    scommessa.
+                  </li>
+                  <li>• Regola il livello di rischio per trovare
+                    l’impostazione che corrisponde alla tua tolleranza al rischio.
+                    Livelli di rischio più bassi di solito offrono vincite minori
+                    ma più frequenti, mentre livelli di rischio più alti possono
+                    portare a vincite maggiori ma meno frequenti.
+                  </li>
+                  <li>• Utilizza la
+                    funzione di gioco automatico per testare diverse strategie in
+                    più turni.
+                  </li>
+                  <li>• Imposta un budget per la tua sessione e
+                    rispettalo. Questo ti aiuta a gestire efficacemente il tuo
+                    bankroll ed evita spese eccessive.
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__wrapper">
+              <div class="accordion__header">
+                Plinko è legale?
+                <span class="accordion__icon"></span>
+              </div>
+
+              <div class="accordion__content">
+                <p style="margin-top: 5px">
+                  Sebbene Plinko sia un gioco d’azzardo, ci sono alcune
+                  strategie che i giocatori possono utilizzare per migliorare la
+                  loro esperienza:
+                </p>
+                <ul style="margin-top: 2px">
+                  <li>• Inizia con puntate più piccole per
+                    comprendere la dinamica del gioco prima di aumentare la
+                    scommessa.
+                  </li>
+                  <li>• Regola il livello di rischio per trovare
+                    l’impostazione che corrisponde alla tua tolleranza al rischio.
+                    Livelli di rischio più bassi di solito offrono vincite minori
+                    ma più frequenti, mentre livelli di rischio più alti possono
+                    portare a vincite maggiori ma meno frequenti.
+                  </li>
+                  <li>• Utilizza la
+                    funzione di gioco automatico per testare diverse strategie in
+                    più turni.
+                  </li>
+                  <li>• Imposta un budget per la tua sessione e
+                    rispettalo. Questo ti aiuta a gestire efficacemente il tuo
+                    bankroll ed evita spese eccessive.
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="download">
+      <div class="container">
+        <div class="download__content">
+          <p class="download__title">
+            Metti alla prova la tua fortuna e ritira la tua vincita!
+          </p>
+          <p class="download__description">Un gioco semplice – soldi veri!</p>
+          <a href="#" class="download__button button">Giocare</a>
+          <p class="download__description-bottom">
+            Nessuna complicazione – clicca il pulsante e inizia a giocare!
+          </p>
+        </div>
+        <div class="download__woman">
+          <div class="download__garanty"></div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer__wrapper">
+        <p class="footer__site">plinko.com</p>
+        <p class="footer__info">© 2025 Plinko. All rights reserved.</p>
+      </div>
+    </footer>
+    <script type="module" src="/src/app.ts"></script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
